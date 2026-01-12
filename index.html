@@ -76,9 +76,6 @@
                            <li class="nav-item">
                               <a class="nav-link" href="contact.html">Nous Contacter</a>
                            </li>
-                           <li class="nav-item">
-                              <a class="nav-link" style="background: transparent;" href="Javascript:void(0)"><i class="fa fa-search"></i></a>
-                           </li>
                         </ul>
                      </div>
                   </nav>
@@ -121,8 +118,6 @@
                                           <p data-animation="animated bounceInLeft">
                                              Nous disposons des meileurs café et chocolat du pays. N'hésitez pas à faire un tour au restaurant.
                                           </p>
-                                          <button class="btn btn-primary  read_more bounceInLeft" data-animation="animated bounceInLeft">Read More</button>
-                                          <button class="btn btn-primary  read_more bounceInLeft" data-animation="animated bounceInLeft">Get A Quote</button>
                                        </div>
                                     </div>
                                     <div class="col-md-7">
@@ -146,8 +141,6 @@
                                           <p data-animation="animated bounceInLeft">
                                              Pas besoin de vous déplacer, nous pouvons vous livrer rapidement.
                                           </p>
-                                          <button class="btn btn-primary  read_more bounceInLeft" data-animation="animated bounceInLeft">Read More</button>
-                                          <button class="btn btn-primary  read_more bounceInLeft" data-animation="animated bounceInLeft">Get A Quote</button>
                                        </div>
                                     </div>
                                     <div class="col-md-7">
@@ -171,8 +164,6 @@
                                           <p data-animation="animated bounceInLeft">
                                              Votre plaisir, notre priorité. Nous sommes disponible pour vous servir de la qulaité.
                                           </p>
-                                          <button class="btn btn-primary  read_more bounceInLeft" data-animation="animated bounceInLeft">Read More</button>
-                                          <button class="btn btn-primary  read_more bounceInLeft" data-animation="animated bounceInLeft">Get A Quote</button>
                                        </div>
                                     </div>
                                     <div class="col-md-7">
@@ -206,7 +197,7 @@
             <div class="row d_flex grid">
                <div class="col-md-6">
                   <div class="about_img text_align_center">
-                     <figure><img src="images/about.png" alt="#"/></figure>
+                     <figure><a href="javascript:void(0)" data-toggle="modal" data-target="#videoModal" data-video="https://www.youtube.com/embed/sMAOCL366kg" title="Voir la vidéo"><img src="images/about.png" alt="#" style="cursor:pointer"/></a></figure>
                   </div>
                </div>
                <div class="col-md-6 order1">
@@ -426,7 +417,7 @@
                      <form class="form_subscri">
                         <div class="row">
                            <div class="col-md-12">
-                              <input class="subsrib" placeholder="Enter your email" type="text" name="Enter your email">
+                              <input class="subsrib" placeholder="Entrez votre email" type="text" name="Enter your email">
                            </div>
                            <div class="col-md-12">
                               <button class="subsci_btn">S'abonner</button>
@@ -442,7 +433,7 @@
                               <ul class="menu_bottom">
                                  <li><a href="index.html">Accueil</a></li>
                                  <li><a href="about.html">À Propos</a></li>
-                                 <li><a href="serviec.html">Services</a></li>
+                                 <li><a href="service.html">Services</a></li>
                                  <li><a href="testimonial.html">Consommateurs</a></li>
                                  <li><a href="blog.html">Blog</a></li>
                                  <li><a href="contact.html">Nous Contacter</a></li>
@@ -453,11 +444,11 @@
                            <div class="infoma text_align_left">
                               <h3>Café</h3>
                               <ul class="menu_bottom">
-                                 <li><a href="Javascript:void(0)">Café noir</a></li>
-                                 <li><a href="Javascript:void(0)">Café rouge</a></li>
-                                 <li><a href="Javascript:void(0)">Café service</a></li>
-                                 <li><a href="Javascript:void(0)">thé vert</a></li>
-                                 <li><a href="Javascript:void(0)">Café au chocolat</a></li>
+                                 <li><a href="service.html">Café noir</a></li>
+                                 <li><a href="service.html">Café rouge</a></li>
+                                 <li><a href="service.html">Café service</a></li>
+                                 <li><a href="service.html">thé vert</a></li>
+                                 <li><a href="service.html">Café au chocolat</a></li>
                               </ul>
                            </div>
                         </div>
@@ -495,6 +486,23 @@
          </div>
       </footer>
       <!-- end footer -->
+
+      <!-- Video modal (YouTube) -->
+      <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-body p-0 position-relative">
+                  <button type="button" class="close position-absolute m-2" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe id="videoIframe" class="embed-responsive-item" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
@@ -504,5 +512,22 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
       <script src="js/owl.carousel.min.js"></script>
       <script src="js/custom.js"></script>
+
+      <script>
+         // Open YouTube in modal and autoplay
+         (function($){
+            $('#videoModal').on('show.bs.modal', function (event) {
+               var button = $(event.relatedTarget);
+               var video = button.data('video');
+               if(video){
+                  var autoplay = video + '?autoplay=1&rel=0';
+                  $('#videoIframe').attr('src', autoplay);
+               }
+            });
+            $('#videoModal').on('hidden.bs.modal', function () {
+               $('#videoIframe').attr('src', '');
+            });
+         })(jQuery);
+      </script>
    </body>
 </html>
